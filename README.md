@@ -1,97 +1,167 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🍳 Recipe App - React Native
 
-# Getting Started
+A modern recipe discovery app built with React Native featuring search, favorites, and a Gen Z minimalist aesthetic.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## ✨ Features
 
-## Step 1: Start Metro
+- 🔍 **Search Recipes** - Search thousands of recipes using TheMealDB API
+- 📖 **Recipe Details** - View ingredients, instructions, and categories
+- ❤️ **Favorites** - Save and manage your favorite recipes
+- 🎨 **Gen Z Minimalist UI** - Clean black background with neon green accents
+- 💾 **Persistent Storage** - Favorites saved locally with AsyncStorage
+- ✕ **Clear Search** - Quickly reset to browse all recipes
+- 🔄 **Smart Navigation** - Proper back navigation from any screen
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 📸 Screenshots
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Home Screen
+<img src="screenshots/screenshot-home.png" width="300">
 
-```sh
-# Using npm
-npm start
+### Search Results
+<img src="screenshots/screenshot-search.png" width="300">
 
-# OR using Yarn
-yarn start
+### Recipe Detail
+<img src="screenshots/screenshot-detail.png" width="300">
+
+### Favorites
+<img src="screenshots/screenshot-favorites.png" width="300">
+
+## 🛠️ Tech Stack
+
+- **React Native** (without Expo)
+- **TypeScript**
+- **TheMealDB API** - Free recipe API
+- **AsyncStorage** - Local data persistence
+- **React Hooks** - State management
+- **Reusable Components** - Clean architecture
+
+## 📦 Installation
+
+### Prerequisites
+- Node.js
+- React Native CLI
+- Xcode (for iOS)
+- CocoaPods
+
+### Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/akramzin/RecipeApp-ReactNative.git
+cd RecipeApp-ReactNative
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+2. Install dependencies:
+```bash
+npm install
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+3. Install iOS dependencies:
+```bash
+cd ios
+pod install
+cd ..
 ```
 
-Then, and every time you update your native dependencies, run:
+4. Run the app:
 
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+**iOS:**
+```bash
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+**Android:**
+```bash
+npm run android
+```
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 📁 Project Structure
+```
+RecipeApp/
+├── src/
+│   ├── components/
+│   │   ├── RecipeCard.tsx       # Reusable recipe card
+│   │   ├── SearchBar.tsx        # Search input component
+│   │   └── EmptyState.tsx       # Empty state component
+│   ├── screens/
+│   │   ├── HomeScreen.tsx       # Main search & browse screen
+│   │   ├── RecipeDetailScreen.tsx  # Recipe details
+│   │   └── FavoritesScreen.tsx  # Saved favorites
+│   ├── services/
+│   │   ├── recipeApi.ts         # API service
+│   │   └── storageService.ts    # AsyncStorage operations
+│   ├── types/
+│   │   └── recipe.ts            # TypeScript interfaces
+│   └── utils/
+│       └── helpers.ts           # Utility functions
+├── App.tsx                       # Main app with navigation
+└── README.md
+```
 
-## Step 3: Modify your app
+## 🎨 Design Philosophy
 
-Now that you have successfully run the app, let's make changes!
+This app follows a **Gen Z minimalist aesthetic**:
+- **Color Palette**: Pure black (#0a0a0a) with neon green (#00ff88) accents
+- **Typography**: Clean, modern fonts with strategic weight variations
+- **Layout**: Grid-based recipe cards with generous spacing
+- **Interactions**: Smooth transitions and intuitive navigation
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## 🚀 Features Breakdown
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### Search & Browse
+- Search recipes by name or ingredient
+- Clear search to return to default view
+- Grid layout with recipe thumbnails
+- Loading states and error handling
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+### Recipe Details
+- Full recipe information
+- Ingredient list with measurements
+- Step-by-step instructions
+- Category and cuisine tags
+- Large hero image
 
-## Congratulations! :tada:
+### Favorites System
+- One-tap save to favorites
+- Persistent storage using AsyncStorage
+- Remove favorites with confirmation
+- Empty state for no favorites
+- Quick access from any screen
 
-You've successfully run and modified your React Native App. :partying_face:
+### Navigation
+- Smart back button navigation
+- Context-aware routing (returns to previous screen)
+- Clean transitions between screens
 
-### Now what?
+## 🌐 API
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+This app uses the [TheMealDB API](https://www.themealdb.com/api.php) - a free recipe database with:
+- 1000+ recipes
+- Multiple cuisines
+- Detailed ingredients
+- No API key required
 
-# Troubleshooting
+## 📝 Future Enhancements
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+- [ ] Filter by category/cuisine
+- [ ] Ingredient-based search
+- [ ] Cooking timer
+- [ ] Share recipes
+- [ ] Meal planning calendar
+- [ ] Shopping list generator
+- [ ] Video tutorials integration
+- [ ] Dark/Light theme toggle
+- [ ] Offline recipe viewing
 
-# Learn More
+## 👨‍💻 Author
 
-To learn more about React Native, take a look at the following resources:
+**Akramzin**
+- GitHub: [@akramzin](https://github.com/akramzin)
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🙏 Acknowledgments
+
+- Recipe data provided by [TheMealDB](https://www.themealdb.com/)

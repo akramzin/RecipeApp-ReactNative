@@ -1,45 +1,55 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, {useState} from 'react';
+import HomeScreen from './src/screens/HomeScreen';
+import RecipeDetailScreen from './src/screens/RecipeDetailScreen';
+import FavoritesScreen from './src/screens/FavoritesScreen';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+type Screen = 'home' | 'detail' | 'favorites';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+function App(): React.JSX.Element {
+  const [currentScreen, setCurrentScreen] = useState<Screen>('home');
+  const [previousScreen, setPreviousScreen] = useState<Screen>('home');
+  const [selectedRecipeId, setSelectedRecipeId] = useState<string>('');
+
+  const navigateToRecipeDetail = (recipeId: string) => {
+    setPreviousScreen(currentScreen);
+    setSelectedRecipeId(recipeId);
+    setCurrentScreen('detail');
+  };
+
+  const navigateToFavorites = () => {
+    setCurrentScreen('favorites');
+  };
+
+  const navigateBack = () => {
+    if (currentScreen === 'detail') {
+      setCurrentScreen(previousScreen);
+    } else {
+      setCurrentScreen('home');
+    }
+  };
 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+    <>
+      {currentScreen === 'home' && (
+        <HomeScreen
+          onRecipePress={navigateToRecipeDetail}
+          onNavigateToFavorites={navigateToFavorites}
+        />
+      )}
+      {currentScreen === 'detail' && (
+        <RecipeDetailScreen
+          recipeId={selectedRecipeId}
+          onBack={navigateBack}
+        />
+      )}
+      {currentScreen === 'favorites' && (
+        <FavoritesScreen
+          onBack={navigateBack}
+          onRecipePress={navigateToRecipeDetail}
+        />
+      )}
+    </>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
