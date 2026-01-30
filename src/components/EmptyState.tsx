@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {useTheme} from '../utils/ThemeContext';
 
 interface EmptyStateProps {
   title: string;
@@ -7,6 +8,9 @@ interface EmptyStateProps {
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({title, subtitle}) => {
+  const {theme} = useTheme();
+  const styles = getStyles(theme);
+
   return (
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyText}>{title}</Text>
@@ -15,24 +19,26 @@ const EmptyState: React.FC<EmptyStateProps> = ({title, subtitle}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 24,
-  },
-  emptyText: {
-    fontSize: 20,
-    fontWeight: '300',
-    color: '#666',
-    marginBottom: 8,
-  },
-  emptySubtext: {
-    fontSize: 14,
-    color: '#444',
-    textAlign: 'center',
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    emptyContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 24,
+    },
+    emptyText: {
+      fontSize: 20,
+      fontWeight: '300',
+      color: theme.textSecondary,
+      marginBottom: 8,
+    },
+    emptySubtext: {
+      fontSize: 14,
+      color: theme.textSecondary,
+      textAlign: 'center',
+      opacity: 0.7,
+    },
+  });
 
 export default EmptyState;

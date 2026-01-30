@@ -5,10 +5,13 @@ A modern recipe discovery app built with React Native featuring search, favorite
 ## ✨ Features
 
 - 🔍 **Search Recipes** - Search thousands of recipes using TheMealDB API
+- 🏷️ **Category Filter** - Browse recipes by category (Dessert, Seafood, Chicken, etc.)
+- 🌍 **Cuisine Filter** - Filter by cuisine (Italian, Chinese, Mexican, etc.)
 - 📖 **Recipe Details** - View ingredients, instructions, and categories
 - ❤️ **Favorites** - Save and manage your favorite recipes
-- 🎨 **Gen Z Minimalist UI** - Clean black background with neon green accents
-- 💾 **Persistent Storage** - Favorites saved locally with AsyncStorage
+- 🌓 **Dark/Light Theme** - Toggle between dark and light modes with persistence
+- 🎨 **Gen Z Minimalist UI** - Clean design with neon green accents
+- 💾 **Persistent Storage** - Favorites and theme preference saved locally
 - ✕ **Clear Search** - Quickly reset to browse all recipes
 - 🔄 **Smart Navigation** - Proper back navigation from any screen
 
@@ -25,6 +28,18 @@ A modern recipe discovery app built with React Native featuring search, favorite
 
 ### Favorites
 <img src="screenshots/screenshot-favorites.png" width="300">
+
+### Light Theme Mode
+
+<img src="screenshots/screenshot-home-light.png" width="300">
+
+### Category Filter (Light Mode)
+
+<img src="screenshots/screenshot-category-selected-light.png" width="300">
+
+### Recipe Detail (Light Mode)
+
+<img src="screenshots/screenshot-detail-light.png" width="300">
 
 ## 🛠️ Tech Stack
 
@@ -140,18 +155,6 @@ This app uses the [TheMealDB API](https://www.themealdb.com/api.php) - a free re
 - Multiple cuisines
 - Detailed ingredients
 - No API key required
-
-## 📝 Future Enhancements
-
-- [ ] Filter by category/cuisine
-- [ ] Ingredient-based search
-- [ ] Cooking timer
-- [ ] Share recipes
-- [ ] Meal planning calendar
-- [ ] Shopping list generator
-- [ ] Video tutorials integration
-- [ ] Dark/Light theme toggle
-- [ ] Offline recipe viewing
 
 ## 👨‍💻 Author
 

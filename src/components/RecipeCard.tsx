@@ -7,6 +7,7 @@ import {
   Image,
 } from 'react-native';
 import {RecipeSearchResult} from '../types/recipe';
+import {useTheme} from '../utils/ThemeContext';
 
 interface RecipeCardProps {
   recipe: RecipeSearchResult;
@@ -21,6 +22,9 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
   showRemove = false,
   onRemove,
 }) => {
+  const {theme} = useTheme();
+  const styles = getStyles(theme);
+
   return (
     <TouchableOpacity
       style={styles.recipeCard}
@@ -41,44 +45,45 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  recipeCard: {
-    width: '48%',
-    marginBottom: 16,
-    backgroundColor: '#1a1a1a',
-    borderWidth: 1,
-    borderColor: '#333',
-    position: 'relative',
-  },
-  recipeImage: {
-    width: '100%',
-    height: 140,
-    backgroundColor: '#2a2a2a',
-  },
-  recipeInfo: {
-    padding: 12,
-  },
-  recipeName: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: '#ffffff',
-    lineHeight: 18,
-  },
-  removeButton: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    width: 28,
-    height: 28,
-    backgroundColor: '#ff4444',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  removeButtonText: {
-    fontSize: 16,
-    color: '#ffffff',
-    fontWeight: '700',
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    recipeCard: {
+      width: '48%',
+      marginBottom: 16,
+      backgroundColor: theme.card,
+      borderWidth: 1,
+      borderColor: theme.border,
+      position: 'relative',
+    },
+    recipeImage: {
+      width: '100%',
+      height: 140,
+      backgroundColor: theme.card,
+    },
+    recipeInfo: {
+      padding: 12,
+    },
+    recipeName: {
+      fontSize: 13,
+      fontWeight: '500',
+      color: theme.text,
+      lineHeight: 18,
+    },
+    removeButton: {
+      position: 'absolute',
+      top: 8,
+      right: 8,
+      width: 28,
+      height: 28,
+      backgroundColor: theme.error,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    removeButtonText: {
+      fontSize: 16,
+      color: '#ffffff',
+      fontWeight: '700',
+    },
+  });
 
 export default RecipeCard;

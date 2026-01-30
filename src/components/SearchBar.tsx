@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import {useTheme} from '../utils/ThemeContext';
 
 interface SearchBarProps {
   value: string;
@@ -22,12 +23,15 @@ const SearchBar: React.FC<SearchBarProps> = ({
   onClear,
   showClear = false,
 }) => {
+  const {theme} = useTheme();
+  const styles = getStyles(theme);
+
   return (
     <View style={styles.searchContainer}>
       <TextInput
         style={styles.searchInput}
         placeholder="Search recipes..."
-        placeholderTextColor="#666"
+        placeholderTextColor={theme.textSecondary}
         value={value}
         onChangeText={onChangeText}
         onSubmitEditing={onSearch}
@@ -52,45 +56,46 @@ const SearchBar: React.FC<SearchBarProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  searchContainer: {
-    flexDirection: 'row',
-    gap: 12,
-    marginBottom: 24,
-  },
-  searchInput: {
-    flex: 1,
-    backgroundColor: '#1a1a1a',
-    borderWidth: 1,
-    borderColor: '#333',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    color: '#ffffff',
-    fontSize: 14,
-  },
-  searchButton: {
-    backgroundColor: '#00ff88',
-    paddingHorizontal: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  searchButtonText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#0a0a0a',
-    letterSpacing: 2,
-  },
-  clearButton: {
-    backgroundColor: '#ff4444',
-    width: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  clearButtonText: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#ffffff',
-  },
-});
+const getStyles = (theme: any) =>
+  StyleSheet.create({
+    searchContainer: {
+      flexDirection: 'row',
+      gap: 12,
+      marginBottom: 24,
+    },
+    searchInput: {
+      flex: 1,
+      backgroundColor: theme.card,
+      borderWidth: 1,
+      borderColor: theme.border,
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      color: theme.text,
+      fontSize: 14,
+    },
+    searchButton: {
+      backgroundColor: theme.accent,
+      paddingHorizontal: 24,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    searchButtonText: {
+      fontSize: 12,
+      fontWeight: '700',
+      color: theme.background,
+      letterSpacing: 2,
+    },
+    clearButton: {
+      backgroundColor: theme.error,
+      width: 50,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    clearButtonText: {
+      fontSize: 20,
+      fontWeight: '700',
+      color: '#ffffff',
+    },
+  });
 
 export default SearchBar;

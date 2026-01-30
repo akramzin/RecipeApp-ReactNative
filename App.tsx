@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
+import {ThemeProvider} from './src/utils/ThemeContext';
 import HomeScreen from './src/screens/HomeScreen';
 import RecipeDetailScreen from './src/screens/RecipeDetailScreen';
 import FavoritesScreen from './src/screens/FavoritesScreen';
 
 type Screen = 'home' | 'detail' | 'favorites';
 
-function App(): React.JSX.Element {
+function AppContent(): React.JSX.Element {
   const [currentScreen, setCurrentScreen] = useState<Screen>('home');
   const [previousScreen, setPreviousScreen] = useState<Screen>('home');
   const [selectedRecipeId, setSelectedRecipeId] = useState<string>('');
@@ -49,6 +50,14 @@ function App(): React.JSX.Element {
         />
       )}
     </>
+  );
+}
+
+function App(): React.JSX.Element {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

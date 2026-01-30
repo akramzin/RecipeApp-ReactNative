@@ -91,3 +91,45 @@ export const getRecipesByCategory = async (category: string): Promise<RecipeSear
     throw error;
   }
 };
+
+export const getRecipesByCuisine = async (cuisine: string): Promise<RecipeSearchResult[]> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/filter.php?a=${cuisine}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch recipes by cuisine');
+    }
+    const data = await response.json();
+    return data.meals || [];
+  } catch (error) {
+    console.error('Error fetching recipes by cuisine:', error);
+    throw error;
+  }
+};
+
+export const getCategories = async (): Promise<string[]> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/list.php?c=list`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch categories');
+    }
+    const data = await response.json();
+    return data.meals.map((item: {strCategory: string}) => item.strCategory);
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    throw error;
+  }
+};
+
+export const getCuisines = async (): Promise<string[]> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/list.php?a=list`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch cuisines');
+    }
+    const data = await response.json();
+    return data.meals.map((item: {strArea: string}) => item.strArea);
+  } catch (error) {
+    console.error('Error fetching cuisines:', error);
+    throw error;
+  }
+};
